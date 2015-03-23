@@ -9,6 +9,9 @@
   "dependencies": {
     "inflector": "~0.0.1"
   },
+  "devDependencies": {
+    "mocha": "*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/unau/eachize"
