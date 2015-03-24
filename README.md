@@ -1,1 +1,1 @@
-# eachize [![Build Status](https://travis-ci.org/unau/eachize.svg?branch=master)](https://travis-ci.org/unau/eachize)
+# eachize [![Build Status](https://travis-ci.org/unau/eachize.svg?branch=master)](https://travis-ci.org/unau/eachize) [![Coverage Status](https://coveralls.io/repos/unau/eachize/badge.svg)](https://coveralls.io/r/unau/eachize)
