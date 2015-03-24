@@ -4,13 +4,17 @@
   "description": "mix in the function that apply a repeatedly function for each element",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec",
+    "coveralls": "mocha test --require blanket --reporter mocha-lcov-reporter | coveralls"
   },
   "dependencies": {
     "inflector": "~0.0.1"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "coveralls": "~2.11.2",
+    "mocha-lcov-reporter": "0.0.2",
+    "blanket": "~1.1.6"
   },
   "repository": {
     "type": "git",
@@ -21,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/unau/eachize/issues"
   },
-  "homepage": "https://github.com/unau/eachize"
+  "homepage": "https://github.com/unau/eachize",
+  "config": {
+    "blanket": {
+      "pattern": "eachize/index.js",
+      "data-cover-never": "node_modules"
+    }
+  }
 }
