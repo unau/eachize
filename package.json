@@ -1,14 +1,16 @@
 {
   "name": "eachize",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "mix in the function that apply a repeatedly function for each element",
   "main": "index.js",
   "scripts": {
     "test": "mocha -R spec",
+    "blanket": "mocha test --require blanket --reporter html-cov > cov.html",
     "coveralls": "mocha test --require blanket --reporter mocha-lcov-reporter | coveralls"
   },
   "dependencies": {
-    "inflector": "~0.0.1"
+    "nougat": "~1.0.1",
+    "inflected-nougatized": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
@@ -27,9 +29,15 @@
   },
   "homepage": "https://github.com/unau/eachize",
   "config": {
+    "nougat": {
+      "gasProject": {
+        "id" : "1SFuJ7-bumdtPgeGgHPBz1HBkZ0AJLHytBdPhgeHN0241crNGaVKUkn55",
+        "key": "MYpKcj44lppbv_4UDR6xjlGtj26Rh5Cwx",
+        "version": 1
+      }
+    },
     "blanket": {
-      "pattern": "eachize/index.js",
-      "data-cover-never": "node_modules"
+      "pattern": [ "*" ]
     }
   }
 }

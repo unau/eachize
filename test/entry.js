@@ -1,12 +1,12 @@
 var assert = require('assert');
-var eachize = require('../');
+var eachize = require('../').eachize;
 
 var Album = function() {
   this.init();
 };
-eachize(Album, 'image');
+eachize(Album, 'photo');
 Album.prototype.init = function() {
-  this.images = {
+  this.photos = {
     'first': 'FIRST',
     'second': 'SECOND',
   };
@@ -15,13 +15,13 @@ Album.prototype.init = function() {
 var album = new Album();
 
 describe('Album', function() {
-  it('has eachImage', function() {
-    assert(typeof album.eachImage == 'function');
+  it('has eachPhoto', function() {
+    assert(typeof album.eachPhoto == 'function');
   });
-  it('eachImage', function() {
-    album.eachImage(function(image, key, x_album) {
-      assert((key == 'first' && image == 'FIRST') ||
-	     (key == 'second' && image == 'SECOND')
+  it('eachPhoto', function() {
+    album.eachPhoto(function(photo, key, x_album) {
+      assert((key == 'first' && photo == 'FIRST') ||
+	     (key == 'second' && photo == 'SECOND')
       );
     });
   });
