@@ -13,13 +13,19 @@
 	names.forEach(function(single) {
 	  var plural = Inflector.pluralize(single);
 	  var methodName = 'each' + Inflector.camelize(single);
-	  target._eachize.funcs[single] = target[methodName] = function(f) {
-	    var hash = this[plural];
-	    for (var key in hash) {
-	      f(hash[key], key, this);
-	    }
-	    return this;
-	  };
+	  target._eachize.funcs[single] =
+	    target[methodName] = function(prefunc, mainfunc, postfunc) {
+	      if ((! mainfunc) && (! postfunc)) {
+		mainfunc = prefunc;
+		prefunc = null;
+	      }
+	      var ctx = (typeof prefunc == 'function') ? prefunc() : {};
+	      var hash = this[plural];
+	      for (var key in hash) {
+		mainfunc(hash[key], key, ctx, this);
+	      }
+	      return (typeof postfunc == 'function') ? postfunc(ctx) : this;
+	    };
 	});
       };
     })(glace.require('inflected-nougatized').Inflector);
