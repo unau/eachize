@@ -4,24 +4,51 @@ var eachize = require('../').eachize;
 var Album = function() {
   this.init();
 };
-eachize(Album, 'photo');
+eachize(Album, 'photo,category');
 Album.prototype.init = function() {
   this.photos = {
-    'first': 'FIRST',
-    'second': 'SECOND',
+    'first': 'photo1',
+    'second': 'photo2'
+  };
+  this.categories = {
+    'portrait': 'human',
+    'landscape': 'nature'
   };
 };
 
 var album = new Album();
 
 describe('Album', function() {
+  it('has internal hash named _eachize', function() {
+    assert(typeof album._eachize == 'object');
+  });
   it('has eachPhoto', function() {
     assert(typeof album.eachPhoto == 'function');
   });
-  it('eachPhoto', function() {
+  it('has eachPhoto and the function is same as _eachize.funcs.photo', function() {
+    assert(album.eachPhoto == album._eachize.funcs.photo);
+  });
+  it('has eachCategory', function() {
+    assert(typeof album.eachCategory == 'function');
+  });
+  it('has eachCategory and the function is same as _eachize.funcs.category', function() {
+    assert(album.eachCategory == album._eachize.funcs.category);
+  });
+  it('has _eachize.names and the array include photo and category', function() {
+    assert(album._eachize.names.indexOf('photo') >= 0 &&
+	   album._eachize.names.indexOf('category') >= 0);
+  });
+  it('provide each photo element to the repeated function', function() {
     album.eachPhoto(function(photo, key, x_album) {
-      assert((key == 'first' && photo == 'FIRST') ||
-	     (key == 'second' && photo == 'SECOND')
+      assert((key == 'first' && photo == 'photo1') ||
+	     (key == 'second' && photo == 'photo2')
+      );
+    });
+  });
+  it('provide each cagoriry element to the repeated function', function() {
+    album.eachCategory(function(category, key, x_album) {
+      assert((key == 'portrait' && category == 'human') ||
+	     (key == 'landscape' && category == 'nature')
       );
     });
   });

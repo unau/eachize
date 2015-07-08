@@ -6,10 +6,14 @@
       return function(names) {
 	var target = this;
 	if (typeof names == 'string') names = names.split(',');
+	target._eachize = {
+	  names: names,
+	  funcs: {}
+	};
 	names.forEach(function(single) {
 	  var plural = Inflector.pluralize(single);
 	  var methodName = 'each' + Inflector.camelize(single);
-	  target[methodName] = function(f) {
+	  target._eachize.funcs[single] = target[methodName] = function(f) {
 	    var hash = this[plural];
 	    for (var key in hash) {
 	      f(hash[key], key, this);
