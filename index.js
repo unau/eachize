@@ -1,5 +1,5 @@
-(this.UiApp ? nougat : require('nougat')).$(
-  this.UiApp ? {g: this} : {g: global, m: module},
+(this.XML ? nougat : require('nougat')).$(
+  this.XML ? {g: this} : {g: global, m: module},
   function(glace) {
     'use strict';
     var asRep = (function(Inflector) {
