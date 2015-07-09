@@ -1,6 +1,6 @@
 {
   "name": "eachize",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "mix in the function that apply a repeatedly function for each element",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,7 @@
       "gasProject": {
         "id" : "1SFuJ7-bumdtPgeGgHPBz1HBkZ0AJLHytBdPhgeHN0241crNGaVKUkn55",
         "key": "MYpKcj44lppbv_4UDR6xjlGtj26Rh5Cwx",
-        "version": 3
+        "version": 4
       }
     },
     "blanket": {

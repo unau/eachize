@@ -25,18 +25,14 @@ describe('Album', function() {
   it('has eachPhoto', function() {
     assert(typeof album.eachPhoto == 'function');
   });
-  it('has eachPhoto and the function is same as _eachize.funcs.photo', function() {
-    assert(album.eachPhoto == album._eachize.funcs.photo);
+  it('has eachPhoto and the function is same as _eachize.photo.func', function() {
+    assert(album.eachPhoto == album._eachize.photo.func);
   });
   it('has eachCategory', function() {
     assert(typeof album.eachCategory == 'function');
   });
-  it('has eachCategory and the function is same as _eachize.funcs.category', function() {
-    assert(album.eachCategory == album._eachize.funcs.category);
-  });
-  it('has _eachize.names and the array include photo and category', function() {
-    assert(album._eachize.names.indexOf('photo') >= 0 &&
-	   album._eachize.names.indexOf('category') >= 0);
+  it('has eachCategory and the function is same as _eachize.category.func', function() {
+    assert(album.eachCategory == album._eachize.category.func);
   });
   it('provide each photo element to the repeated function', function() {
     album.eachPhoto(function(photo, key, ctx, x_album) {
