@@ -55,28 +55,28 @@ describe('Album', function() {
     var actual =
         album.eachCategory(function() { return { str: '[:' }; },
                            function(category, key, ctx, x_album) {
-                             ctx.str += '(' + key + ':' + category + '):';
+                             ctx.str += '(' + key + ':' + category + ':' + x_album.categories[key].charAt(0) + '):';
                            },
                            function(ctx) { return ctx.str + ']' ; });
-    assert(actual == '[:(portrait:human):(landscape:nature):]' ||
-           actual == '[:(landscape:nature):(portrait:human):]');
+    assert(actual == '[:(portrait:human:h):(landscape:nature:n):]' ||
+           actual == '[:(landscape:nature:n):(portrait:human:h):]');
   });
 });
 
 var albums = {
-  trip: { name: 'trip'  },
-  job: { name: 'job'  }
+  trip: { name: 'trip1'  },
+  job: { name: 'job1'  }
 };
 
 describe('eachize for a simple hash', function() {
   it('works', function() {
     var actual =
         eachize(albums)(function() { return { str: '[:' }; },
-                        function(album, key, ctx, albums) {
-                          ctx.str += '(' + key + ':' + album.name + '):';
+                        function(album, key, ctx, x_albums) {
+                          ctx.str += '(' + key + ':' + album.name + ':' + x_albums[key].name.charAt(0) + '):';
                         },
-                        function(ctx) { return ctx.str + ']' ; });
-    assert(actual == '[:(trip:trip):(job:job):]' ||
-           actual == '[:(job:job):(trip:trip):]');
+                        function(ctx) { return ctx.str + ']'; });
+    assert(actual == '[:(trip:trip1:t):(job:job1:j):]' ||
+           actual == '[:(job:job1:j):(trip:trip1:t):]');
   });
 });
