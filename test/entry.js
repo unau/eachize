@@ -62,3 +62,21 @@ describe('Album', function() {
            actual == '[:(landscape:nature):(portrait:human):]');
   });
 });
+
+var albums = {
+  trip: { name: 'trip'  },
+  job: { name: 'job'  }
+};
+
+describe('eachize for a simple hash', function() {
+  it('works', function() {
+    var actual =
+        eachize(albums)(function() { return { str: '[:' }; },
+                        function(album, key, ctx, albums) {
+                          ctx.str += '(' + key + ':' + album.name + '):';
+                        },
+                        function(ctx) { return ctx.str + ']' ; });
+    assert(actual == '[:(trip:trip):(job:job):]' ||
+           actual == '[:(job:job):(trip:trip):]');
+  });
+});

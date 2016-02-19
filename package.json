@@ -1,6 +1,6 @@
 {
   "name": "eachize",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "mix in the function that apply a repeatedly function for each element",
   "main": "index.js",
   "scripts": {
