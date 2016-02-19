@@ -37,14 +37,14 @@ describe('Album', function() {
   it('provide each photo element to the repeated function', function() {
     album.eachPhoto(function(photo, key, ctx, x_album) {
       assert((key == 'first' && photo == 'photo1' && x_album == album) ||
-	     (key == 'second' && photo == 'photo2' && x_album == album)
+             (key == 'second' && photo == 'photo2' && x_album == album)
       );
     });
   });
   it('provide each cagoriry element to the repeated function', function() {
     album.eachCategory(function(category, key, ctx, x_album) {
       assert((key == 'portrait' && category == 'human' && x_album == album) ||
-	     (key == 'landscape' && category == 'nature' && x_album == album)
+             (key == 'landscape' && category == 'nature' && x_album == album)
       );
     });
   });
@@ -53,12 +53,12 @@ describe('Album', function() {
   });
   it('provide "each function" that takes three arguments', function() {
     var actual =
-	album.eachCategory(function() { return { str: '[:' }; },
-			   function(category, key, ctx, x_album) {
-			     ctx.str += '(' + key + ':' + category + '):';
-			   },
-			   function(ctx) { return ctx.str + ']' ; });
+        album.eachCategory(function() { return { str: '[:' }; },
+                           function(category, key, ctx, x_album) {
+                             ctx.str += '(' + key + ':' + category + '):';
+                           },
+                           function(ctx) { return ctx.str + ']' ; });
     assert(actual == '[:(portrait:human):(landscape:nature):]' ||
-	   actual == '[:(landscape:nature):(portrait:human):]');
+           actual == '[:(landscape:nature):(portrait:human):]');
   });
 });
