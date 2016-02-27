@@ -14,13 +14,23 @@ var Album = function() {
 };
 Album.prototype.init = function() {
   this.photos = {
-    'first': 'photo1',
-    'second': 'photo2'
+    first: {
+      id: 'p01',
+      title: 'first',
+      image: ' photo1'
+    },
+    second: {
+      id: 'p02',
+      title: 'second',
+      image: 'photo2'
+    }
   };
+  this.photosByTitle = this.photos;
   this.categories = {
-    'portrait': 'human',
-    'landscape': 'nature'
+    portrait: 'human',
+    landscape: 'nature'
   };
+};
 ```
 if we use **eachize**, we can use iteration functions `eachPhoto()` and `eachCategory()` with instances of `Album` class.
 ```javascript
@@ -29,7 +39,7 @@ eachize(Album, 'photo,category');
 
 var album = new Album();
 album.eachPhoto(function(photo, key) {
-  console.log(key + ':' + photo);
+  console.log(key, photo);
 })
 ```
 
@@ -46,11 +56,44 @@ var report = album.eachCategory(
 
 * the first function : is the initializing function.
 the return value of this function is used as the context of the iteration.
-* the second functin : is an iteration function. the third argument of 
+* the second functin : is an iteration function. the third argument of
 this function is the context.
 * the third function : is the finalizeing function. the argument of
 this function is the context. and, the return value of this function is
-the return value of the outer function, for example `eachCategory()`.
+the return value of the outer function, in this case it is `eachCategory()`.
+
+###  Specify keys for a container
+you can specify two or more keys for a container.
+```javascript
+eachize(Album, 'photo(title,id),category');
+```
+in this case, the two keys named `title` and `id` are specified for
+the container `protos`.
+and, you can specify the key as a first argument, like below:
+```javascript
+album.eachPhoto('title' func); // with album.photosByTitle
+album.eachPhoto('id' preFunc, mainFunc, postFunc);
+  // with album.photsoById
+```
+
+you can use a population function.
+```javascript
+album.populateEachPhoto('title', 'id');
+console.log(album.photosById);
+/*--*
+ {
+  p01: {
+    id: 'p01',
+    title: 'first',
+    image: ' photo1'
+  },
+  p02: {
+    id: 'p02',
+    title: 'second',
+    image: 'photo2'
+  }
+ *--*/ 
+```
 
 ### For a plain hash
 you can use **eachize** for simple/plain hashes, like as below:
